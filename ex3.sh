@@ -22,9 +22,15 @@ function checkmem {
 	fi
 }
 
-
 # Obtenir pids de l'usuari
-res_ps=`ps -u joel -o pid`
+if [ $# -eq $((0)) ]
+then
+	usr=`whoami`
+else
+	us=$1
+fi
+res_ps=`ps -u $usr -o pid`	
+echo "Comprovant processos de l'usuari $usr"
 for pid in $res_ps
 do
 	if [ $pid != "PID" ]
