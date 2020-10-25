@@ -13,9 +13,9 @@ function checkmem {
 			if [ ${arr[$i]} == "VmSize:" ]
 			then
 				# echo ${arr[$i]} ${arr[$(($i+1))]}
-				if [ $((${arr[$(($i+1))]})) -gt $((1)) ]
+				if [ $((${arr[$(($i+1))]})) -gt $((1024*1024)) ]
 				then
-					echo "PID $1 ocupa més d'1 kB: ${arr[$(($i+1))]}"
+					echo "PID $1 ocupa més d'1 GB: ${arr[$(($i+1))]}"
 				fi
 			fi
 		done
@@ -37,6 +37,22 @@ do
 	then
 		# Per cada PID, comprovar la seva mida
 		checkmem $pid
+	fi
+done
+
+while true
+do
+	echo -n "Escriu el PID del procés que vols eliminar: "
+	read pid_p
+	echo "Intentant eliminar el procés $pid_p..."
+	kill -9 $pid_p
+	err=$?
+	if [ $err -eq $((0)) ]
+	then
+		echo "Procés eliminat exitosament"
+	else
+		echo "Error al eliminar el procés"
+		echo "Codi d'error: $err"
 	fi
 done
 
