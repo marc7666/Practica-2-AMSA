@@ -15,7 +15,7 @@ function checkmem {
 				# echo ${arr[$i]} ${arr[$(($i+1))]}
 				if [ $((${arr[$(($i+1))]})) -gt $((1024)) ]
 				then
-					echo "PID $1 ocupa més d'1 kB: ${arr[$(($i+1))]}"
+					echo "PID $1 ocupa més d'1 MB: ${arr[$(($i+1))]}"
 				fi
 			fi
 		done
