@@ -13,9 +13,9 @@ function checkmem {
 			if [ ${arr[$i]} == "VmSize:" ]
 			then
 				# echo ${arr[$i]} ${arr[$(($i+1))]}
-				if [ $((${arr[$(($i+1))]})) -gt $((1024*1024)) ]
+				if [ $((${arr[$(($i+1))]})) -gt $((1024)) ]
 				then
-					echo "PID $1 ocupa més d'1 GB: ${arr[$(($i+1))]}"
+					echo "PID $1 ocupa més d'1 kB: ${arr[$(($i+1))]}"
 				fi
 			fi
 		done
